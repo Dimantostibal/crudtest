@@ -4,7 +4,6 @@ import crud.model.User;
 import crud.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,12 +25,12 @@ public class UserController {
     @GetMapping()
     public String index(ModelMap model){
         List<User> list = userService.getAllUsers();
-        model.addAttribute("allUsers", list);
+        model.addAttribute("users", list);
         return "index";
     }
 
     @GetMapping("/{id}")
-    public String show(@PathVariable("id") int id, Model model) {
+    public String show(@PathVariable("id") int id, ModelMap model) {
         model.addAttribute("person", userService.getUser(id));
         return "show";
     }
