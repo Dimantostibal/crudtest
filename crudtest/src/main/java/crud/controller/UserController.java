@@ -22,12 +22,12 @@ public class UserController {
     @GetMapping()
     public String index(ModelMap model){
         List<User> list = userService.getAllUsers();
-        model.addAttribute("AllUsers", list);
+        model.addAttribute("allUsers", list);
         return "index";
     }
 
-    @GetMapping("/{id}")
-    public String show(@PathVariable("id") int id, ModelMap model) {
+    @GetMapping("show")
+    public String show(@RequestParam ("id") Long id, ModelMap model) {
         model.addAttribute("person", userService.getUser(id));
         return "show";
     }
@@ -43,8 +43,8 @@ public class UserController {
         return "redirect:/users";
     }
 
-    @GetMapping("/{id}/update")
-    public String edit(@PathVariable("id") int id, ModelMap model){
+    @GetMapping("edit")
+    public String edit(@RequestParam("id") Long id, ModelMap model){
         model.addAttribute("updateUser", userService.getUser(id));
         return "update";
     }
@@ -55,8 +55,8 @@ public class UserController {
         return "redirect:/users";
     }
 
-    @DeleteMapping("/{id}")
-    public String delete(@PathVariable("id")int id) {
+    @DeleteMapping("delete")
+    public String delete(@RequestParam("id")Long id) {
         userService.delete(id);
         return "redirect:/users";
     }

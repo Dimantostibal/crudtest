@@ -8,9 +8,9 @@
 
 <b>Все пользователи</b>
 <br/>
-<div th:each="people : ${AllUsers}">
+<div th:each="people : ${allUsers}">
   <br/>
-  <a th:href="@{/users/{id}(id=${people.getId()})}" th:text="${people.getName()}">user</a>
+  <a th:href="@{/users/show(id=${people.id})}" th:text="${people.getName()}">user</a>
 </div>
 <br/>
 <hr/>
